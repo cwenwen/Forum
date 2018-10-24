@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('head', {title: "Wenwen's Forum"}) %>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+      <a class="navbar-brand" href="/">Wenwen's Forum</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <% if (!nickname) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+    <div class="m-4 lead"><% if (!nickname) { %>Please log in to leave your comment<% } else { %>Hello, <%= nickname %><% } %></div>
+    <% if (nickname) { %>
+      <div class="create-comment my-4 p-4 rounded">
+        <input type="text" name="topic" class="create-comment--topic rounded" placeholder="Topic" required />
+        <textarea name="content" class="create-comment--content mt-2 rounded" placeholder="Comment" required></textarea>
+        <input name="parent_id" type="hidden" value="0" />
+        <div class="create-comment__btn mt-2 text-center rounded">submit</div>
+      </div>
+    <% } %>
+    <% for (let i = 0; i < comments.length; i++ ) { %>
+    <div class="comment mb-4 p-5 bg-light-grey rounded">  
+      <h1 class="comment--topic display-4"><%= comments[i].topic %></h1>
+      <% if (comments[i].username === user.username) { %>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="edit__btn btn btn-secondary btn-sm mr-1">Edit</button>
+          <button type="button" class="delete__btn btn btn-dark btn-sm">Delete</button>
+        </div>
+      <% } %>
+      <div class="row">
+        <div class="col"><span class="comment--nickname"><%= comments[i].nickname %></span><span class="comment--username ml-2 font-weight-light font-italic">(<%= comments[i].username %>)</span></div><div class="comment--created-at col text-right"><%= comments[i].createdAt.toString().slice(4, 21) %></div>
+      </div>
+      <hr />
+      <p class="comment--content pb-3"><%- comments[i].content.replace(/\n/g, '<br/>') %></p>
+      <div class="comment--id"><%= comments[i].commentId %></div>
+      <%
+      for (let j = 0; j < comments[i].subComments.length; j++) { 
+        if (comments[i].subComments[j].parentId === comments[i].commentId) {
+      %>
+      <div class="subcomment mt-3 ml-4 p-4 <% if (comments[i].subComments[j].username === comments[i].username) { %>border<% } else { %>bg-light<% } %> rounded">
+        <% if (comments[i].subComments[j].username === user.username) { %>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="edit__btn btn btn-secondary btn-sm mr-1">Edit</button>
+            <button type="button" class="delete__btn btn btn-dark btn-sm">Delete</button>
+          </div>
+        <% } %>
+        <div class="row">
+          <div class="col"><span class="subcomment--nickname"><%= comments[i].subComments[j].nickname %></span><span class="subcomment--username ml-2 font-weight-light font-italic">(<%= comments[i].subComments[j].username %>)</span></div><div class="subcomment--created-at col text-right"><%= comments[i].subComments[j].createdAt.toString().slice(4, 21) %></div>
+        </div>
+        <hr />
+        <p class="subcomment--content m-0 p-0"><%- comments[i].subComments[j].content.replace(/\n/g, '<br/>') %></p>
+        <div class="subcomment--id"><%= comments[i].subComments[j].commentId %></div>
+      </div>
+      <% } } %>
+      <% if (nickname) { %>
+        <div class="create-comment-sub mt-3 ml-4 p-4 rounded" action="" method="post">
+          <input name="topic" type="hidden" value="<%= comments[i].topic %>" />  
+          <textarea name="content" class="create-comment-sub--content rounded" placeholder="Comment" required></textarea>
+          <input name="parent_id" type="hidden" value="<%= comments[i].commentId %>" />
+          <div class="create-comment__btn mt-2 text-center rounded">submit</div>
+        </div>
+      <% } %>
+    </div>
+    <% } %>
+    <%
+      var prevPageDisable = '',
+          prevPageLink = `/pages/${currentPage - 1}`,
+          nextPageDisable = '',
+          nextPageLink = `/pages/${currentPage + 1}`;
+
+      if (currentPage === 1) {
+        prevPageDisable = 'disabled';
+        prevPageLink = '#';
+      }
+      if (currentPage === totalPages) {
+        nextPageDisable = 'disabled';
+        nextPageLink = '#';
+      }
+    %>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item <%= prevPageDisable %>">
+          <a class="page-link" href="<%= prevPageLink %>" tabindex="-1">Previous</a>
+        </li>
+        <% for (let i = 1; i <= totalPages; i++ ) { %>
+          <li class="page-item <% if (i === currentPage) { %>disabled<% } %>">
+            <a class="page-link" href="/pages/<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+        <li class="page-item <%= nextPageDisable %>">
+          <a class="page-link" href="<%= nextPageLink %>">Next</a>
+        </li>
+      </ul>
+    </nav>
+    <%- include('footer') %>
+  </div>
+  <%- include('scripts', {jsFile: 'index'}) %>
+</body>
+</html>

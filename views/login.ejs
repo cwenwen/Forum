@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('head', {title: "Wenwen's Forum | Login"}) %>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+      <a class="navbar-brand" href="/">Wenwen's Forum</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container my-4 p-5 col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 bg-light-grey rounded">
+    <div class="pb-5 display-4 text-center">Login</div>
+    <div class="login">
+      <div class="warning text-center text-danger"></div>
+      <input type="text" name="username" class="input rounded" placeholder="Username" required />
+      <input type="password" name="password" class="input mt-2 rounded" placeholder="Password" required />
+      <input type="submit" class="login__btn mt-4 rounded" />
+    </div>
+    <a class="inline-anchor" href="/register">Need an account?</a>
+  </div>
+  <%- include('footer') %>
+  <%- include('scripts', {jsFile: 'login'}) %>
+  </body>
+</html>

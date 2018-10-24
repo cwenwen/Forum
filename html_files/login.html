@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wenwen's Forum | Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="../public/css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+      <div class="container col-12 col-sm-10 col-md-8 col-lg-7 col-xl-6">
+        <a class="navbar-brand" href="#">Wenwen's Forum</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Register</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container my-4 p-5 col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4 bg-light-grey rounded">
+      <div class="pb-5 display-4 text-center">Login</div>
+      <form class="login">
+        <div class="warning text-center text-danger">Invalid username or password</div>
+        <input type="text" name="username" class="input rounded" placeholder="Username" required />
+        <input type="password" name="password" class="input mt-2 rounded" placeholder="Password" required />
+        <input type="submit" class="mt-4 rounded" />
+      </form>
+      <a class="inline-anchor" href="/register">Need an account?</a>
+    </div>
+    <div class="footer text-muted text-center m-4">This page is created by <a class="font-weight-bold" href="https://github.com/cwenwen">me</a> - <a class="font-weight-bold" href="#">View on Github</a></div>
+  </body>
+</html>

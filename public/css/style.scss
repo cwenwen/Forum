@@ -1,0 +1,102 @@
+$create-comment-grey-light: #ccc;
+$create-comment-grey-medium: #999;
+
+.bg-light-grey {
+  background-color: #eee;
+}
+
+.footer {
+  a {
+    color: #6c757d;
+    
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+  }
+}
+
+[class^="create-comment"] {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid $create-comment-grey-light;
+
+  * {
+    padding: .5rem;
+    border: 1px solid $create-comment-grey-medium;
+  }
+
+  [type="text"] {
+    height: 2rem;
+    
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
+  .create-comment__btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: $create-comment-grey-medium;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $create-comment-grey-light;
+      border: 1px solid $create-comment-grey-light;
+    }
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+
+  * {
+    padding: .5rem;
+    border: 1px solid $create-comment-grey-medium;
+  }
+
+  [type="submit"] {
+    text-transform: uppercase;
+    color: white;
+    background-color: $create-comment-grey-medium;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $create-comment-grey-light;
+      border: 1px solid $create-comment-grey-light;
+    }
+  }
+}
+
+.warning {
+  border: none;
+  display: none;
+}
+
+.inline-anchor {
+  color: #6c757d;
+    
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.comment--topic {
+  word-break: break-all;
+}
+
+.edit-textarea {
+  border: 1px solid $create-comment-grey-medium;
+  width: 100%;
+  min-height: 100px;
+}
+
+[class$="comment--id"] {
+  display: none;
+}

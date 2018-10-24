@@ -1,0 +1,88 @@
+.bg-light-grey {
+  background-color: #eee;
+}
+
+.footer a {
+  color: #6c757d;
+}
+.footer a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+[class^=create-comment] {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+[class^=create-comment] * {
+  padding: 0.5rem;
+  border: 1px solid #999;
+}
+[class^=create-comment] [type=text] {
+  height: 2rem;
+}
+[class^=create-comment] textarea {
+  min-height: 100px;
+}
+[class^=create-comment] .create-comment__btn {
+  text-transform: uppercase;
+  color: white;
+  background-color: #999;
+  transition: 0.3s;
+}
+[class^=create-comment] .create-comment__btn:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+.login * {
+  padding: 0.5rem;
+  border: 1px solid #999;
+}
+.login [type=submit] {
+  text-transform: uppercase;
+  color: white;
+  background-color: #999;
+  transition: 0.3s;
+}
+.login [type=submit]:hover {
+  cursor: pointer;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.warning {
+  border: none;
+  display: none;
+}
+
+.inline-anchor {
+  color: #6c757d;
+}
+.inline-anchor:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.comment--topic {
+  word-break: break-all;
+}
+
+.edit-textarea {
+  border: 1px solid #999;
+  width: 100%;
+  min-height: 100px;
+}
+
+[class$=comment--id] {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */
