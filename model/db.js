@@ -1,8 +1,8 @@
 // use Sequelize
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('mentor_program_db', process.env.USER, process.env.PWD, {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PWD, {
+  host: process.env.HOST,
   dialect: 'mysql',
   timezone: "+08:00"
 });
