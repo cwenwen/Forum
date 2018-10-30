@@ -25,7 +25,9 @@ const Comment = sequelize.define('comment', {
     allowNull: false
   },
   createdAt: {
-    type: Sequelize.DATE
+    type: Sequelize.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
 }, {
   timestamps: false,
