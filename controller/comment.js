@@ -2,9 +2,6 @@ const sequelize = require('../model/db');
 const Comment = require('../model/comment');
 const User = require('../model/user');
 
-User.hasMany(Comment, {foreignKey: 'username'});
-Comment.belongsTo(User, {foreignKey: 'username'});
-
 module.exports = {
   
   insertComment: (req, res) => {
@@ -60,7 +57,11 @@ module.exports = {
       })
       .then(data => {
         // calculate the number of pages
-        totalPages = Math.ceil(data[0].dataValues.datanum / 10); 
+        if (data[0].dataValues.datanum === 0) {
+          totalPages = 1;
+        } else {
+          totalPages = Math.ceil(data[0].dataValues.datanum / 10); 
+        }
         res.locals.totalPages = totalPages;
 
         // handle invalid page number
@@ -75,6 +76,10 @@ module.exports = {
           // find the first comment of each page
           commentStartNumber = ( currentPage - 1 ) * 10;
         }
+
+        // associations
+        User.hasMany(Comment, {foreignKey: 'username'});
+        Comment.belongsTo(User, {foreignKey: 'username'});
 
         // get 10 comments for current page
         sequelize
