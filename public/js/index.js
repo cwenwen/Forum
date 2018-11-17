@@ -1,3 +1,5 @@
+let contentToBeDeleted, commentToBeRemove;
+
 document.querySelector('body').addEventListener('click', e => {
 
   // create new comment
@@ -69,16 +71,21 @@ document.querySelector('body').addEventListener('click', e => {
     xhr.send(`commentId=${commentId}&content=${content.value}`);
   }
   
+  // confirm deletion
+  if (e.target.classList.contains('confrm__deletion__btn')) {
+    contentToBeDeleted = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
+    commentToBeRemove = e.target.parentNode.parentNode;
+  }
+
   // delete comment
   if (e.target.classList.contains('delete__btn')) {
-    const content = e.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling;
-    const commentId = content.nextElementSibling.innerText;
+    const commentId = contentToBeDeleted.nextElementSibling.innerText;
 
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.responseText === 'deleted') e.target.parentNode.parentNode.remove();
+        if (xhr.responseText === 'deleted') commentToBeRemove.remove();
       }
     }
     xhr.open('DELETE', '/delete_comment');
