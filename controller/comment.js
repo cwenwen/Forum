@@ -131,6 +131,13 @@ module.exports = {
           id: req.body.commentId
         }
       })
+      .then(() => {
+        return Comment.destroy({
+          where: {
+            parentId: req.body.commentId
+          }
+        })
+      })
       .then(() => res.send('deleted'))
       .catch(error => {throw error})
   }
