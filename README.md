@@ -2,6 +2,7 @@
 
 This is a simple practice of Express (Node.js) to get familiar with the web back-end operation.  
 
+![](https://i.imgur.com/wKQTVmz.jpg)
 
 ### Purpose
 
